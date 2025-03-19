@@ -137,3 +137,6 @@ dist
 
 # Sqlite
 db.sqlite
+
+# Upload files
+uploads/
