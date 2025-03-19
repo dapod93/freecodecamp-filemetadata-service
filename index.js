@@ -10,11 +10,11 @@ var app = express();
 
 const uploadDir = path.join(__dirname, "uploads");
 const storage = multer.diskStorage({
-  destination: (_, _, cb) => {
+  destination: (req, file, cb) => {
     cb(null, uploadDir);
   },
 
-  filename: (_, file, cb) => {
+  filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
@@ -37,7 +37,6 @@ app.post("/api/fileanalyse", uploader.single("upfile"), (req, res) => {
     name: req.file.originalname,
     type: req.file.mimetype,
     size: req.file.size,
-    path: req.file.path,
   });
 });
 
