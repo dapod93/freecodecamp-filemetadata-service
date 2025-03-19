@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const uploader = multer({ storage: storage });
 
 const checkUploadLimitMiddleware = (req, res, next) => {
-  if (fs.readdirSync(uploadDir).filter((file) => fs.statSync(path.join(uploadDir, file)).isFile()).length >= 5) {
+  if (fs.readdirSync(uploadDir).filter((file) => fs.statSync(path.join(uploadDir, file)).isFile()).length > 5) {
     return res.json({ error: "limit reached" });
   }
   next();
